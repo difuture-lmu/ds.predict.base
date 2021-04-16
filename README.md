@@ -7,7 +7,7 @@ Status](https://github.com/difuture/ds.predict.base/workflows/R-CMD-check/badge.
 v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 [![codecov](https://codecov.io/gh/difuture/ds.predict.base/branch/master/graph/badge.svg?token=OLIPLWDTN5)](https://codecov.io/gh/difuture/ds.predict.base)
 
-# Base Predict Function for DataSHIELD
+# Base Predict Functions for DataSHIELD
 
 The package provides base functionality to push `R` objects to servers
 using the DataSHIELD\](<https://www.datashield.ac.uk/>) infrastructure
