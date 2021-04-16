@@ -8,7 +8,8 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "Readme_files/"
+  fig.path = "Readme_files/",
+  eval=FALSE
 )
 
 devtools::load_all()
@@ -23,25 +24,20 @@ devtools::load_all()
 
 ## Installation
 
-#### Developer version:
+At the moment, there is no CRAN version available. Install the development version from GitHub:
 
-The package is currently hosted at a private GitLab repository. If access is granted, the installation can be done via `devtools`:
-
-```r
-cred = git2r::cred_user_pass(username = "username", password = "password")
-devtools::install_git("https://gitlab.lrz.de/difuture_analysegruppe/ds.predict.base.git", credentials = cred)
+```{r,eval=FALSE}
+remotes::install_github("difuture/ds.predict.base")
 ```
-
-Note that you have to supply your username and password from GitLab to install the package.
 
 #### Register assign methods
 
-It is necessary to register the assign methods in the OPAL administration to use them. The assign methods are (with namespaces):
+It is necessary to register the assign methods in the OPAL administration to use them. The assign methods are:
 
-- `ds.predict.base::decodeBinary`
-- `ds.predict.base::assignPredictModel`
+- `decodeBinary`
+- `assignPredictModel`
 
-These methods should be registered automatically when publishing the package on OPAL.
+These methods should be registered automatically when publishing the package on OPAL (see `DESCRIPTION`).
 
 ## Usage
 
