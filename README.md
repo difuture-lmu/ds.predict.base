@@ -1,20 +1,22 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    ## Loading ds.predict.base
-
 [![Actions
 Status](https://github.com/difuture/ds.predict.base/workflows/R-CMD-check/badge.svg)](https://github.com/difuture/ds.predict.base/actions)
 [![License: LGPL
 v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 [![codecov](https://codecov.io/gh/difuture/ds.predict.base/branch/master/graph/badge.svg?token=OLIPLWDTN5)](https://codecov.io/gh/difuture/ds.predict.base)
-<!--[![pipeline status](https://gitlab.lrz.de/difuture_analysegruppe/ds.predict.base/badges/master/pipeline.svg)](https://gitlab.lrz.de/difuture_analysegruppe/ds.predict.base/-/commits/master) [![coverage report](https://gitlab.lrz.de/difuture_analysegruppe/ds.predict.base/badges/master/coverage.svg)](https://gitlab.lrz.de/difuture_analysegruppe/ds.predict.base/-/commits/master)-->
 
 # Base Predict Function for DataSHIELD
 
-## Overview
-
-The package is written
+The package provides base functionality to push `R` objects to servers
+using the DataSHIELD\](<https://www.datashield.ac.uk/>) infrastructure
+for distributed computing. Additionally, it is possible to calculate
+predictions on the server for a specific model. Combining these allows
+to push a model from the local machine to all servers running DataSHIELD
+and predicting on that model with data exclusively hold by the server.
+The predictions are stored at the server and can be further analysed
+using the DataSHIELD functionality for non-disclosive analyses.
 
 ## Installation
 
@@ -22,19 +24,23 @@ At the moment, there is no CRAN version available. Install the
 development version from GitHub:
 
 ``` r
-remotes::install_github("difuture/ds.predict.base")
+remotes::install_github("difuture-lmu/ds.predict.base")
 ```
 
 #### Register assign methods
 
 It is necessary to register the assign methods in the OPAL
-administration to use them. The assign methods are:
+administration. The assign methods are:
 
   - `decodeBinary`
   - `assignPredictModel`
 
-These methods should be registered automatically when publishing the
-package on OPAL (see `DESCRIPTION`).
+These methods are registered automatically when publishing the package
+on OPAL (see
+[`DESCRIPTION`](https://github.com/difuture/ds.predict.base/blob/master/DESCRIPTION)).
+
+Note that the package needs to be installed at both locations, the
+server and the analysts machine.
 
 ## Usage
 
@@ -81,10 +87,10 @@ pushObject(connections, mod)
 # Check if model "mod" is now available:
 DSI::datashield.symbols(connections)
 
-# Check class of uploaded "mod"
+# Check class of uploaded "mod":
 ds.class("mod")
 
-# Now predict on uploaded model and data set D:
+# Now predict on uploaded model and data set "D" and store as object "pred":
 predictModel(connections, mod, "pred", dat_name = "D")
 
 # Check if prediction "pred" is now available:
@@ -95,7 +101,6 @@ ds.summary("pred")
 
 # Now assign values with response type "response":
 predictModel(connections, mod, "pred", "D", predict_fun = "predict(mod, newdata = D, type = 'response')")
-
 ds.summary("pred")
 
 DSI::datashield.logout(connections)
