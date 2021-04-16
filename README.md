@@ -54,9 +54,9 @@ builder = DSI::newDSLoginBuilder()
 
 builder$append(
   server   = "ibe",
-  url      = "https://dsibe.ibe.med.uni-muenchen.de",
-  user     = "ibe",
-  password = "123456",
+  url      = "******",
+  user     = "***",
+  password = "******",
   table    = "ProVal.KUM"
 )
 
