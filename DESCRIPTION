@@ -1,0 +1,26 @@
+Package: ds.predict.base
+Type: Package
+Title: Push and predict objects on DataSHIELD
+Authors@R:
+    c(person(given = "Daniel",
+             family = "Schalk",
+             role = c("aut", "cre"),
+             email = "daniel.schalk@stat.uni-muenchen.de"))
+Version: 0.0.1
+License: LGPL-3
+Description: This package allows the user to push R objects to a DataSHIELD server. Additionally, if a specific
+    model is present on the server, it is possible to calculate predictions on the server.
+Depends:
+    R (>= 3.1.0)
+Imports:
+    checkmate,
+    DSI,
+    stringr
+Suggests:
+    testthat
+AssignMethods:
+    decodeBinary,
+    assignPredictModel
+Options: datashield.privacyLevel=5
+RoxygenNote: 7.1.0
+Roxygen: list(markdown = TRUE)
