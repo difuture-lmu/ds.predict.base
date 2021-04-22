@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 [![Actions
-Status](https://github.com/difuture/ds.predict.base/workflows/R-CMD-check/badge.svg)](https://github.com/difuture/ds.predict.base/actions)
+Status](https://github.com/difuture-lmu/ds.predict.base/workflows/R-CMD-check/badge.svg)](https://github.com/difuture-lmu/ds.predict.base/actions)
 [![License: LGPL
 v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 [![codecov](https://codecov.io/gh/difuture/ds.predict.base/branch/master/graph/badge.svg?token=OLIPLWDTN5)](https://codecov.io/gh/difuture/ds.predict.base)
@@ -44,17 +44,13 @@ server and the analysts machine.
 
 ## Usage
 
-The following code shows the basic methods and how to use them. Note
-that this package is intended for internal usage and base for the other
-packages and does not really have any practical usage for the analyst.
-
 ``` r
 library(DSI)
 library(DSOpal)
 library(DSLite)
 library(dsBaseClient)
 
-# library(ds.predict.base)
+library(ds.predict.base)
 
 builder = DSI::newDSLoginBuilder()
 
@@ -66,9 +62,9 @@ builder$append(
   table    = "ProVal.KUM"
 )
 
-
 logindata = builder$build()
-connections = DSI::datashield.login(logins = logindata, assign = TRUE, symbol = "D", opts = list(ssl_verifyhost = 0, ssl_verifypeer=0))
+connections = DSI::datashield.login(logins = logindata, assign = TRUE, symbol = "D",
+  opts = list(ssl_verifyhost = 0, ssl_verifypeer = 0))
 
 ### Get available tables:
 DSI::datashield.symbols(connections)
