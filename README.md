@@ -10,8 +10,8 @@ v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.or
 # Base Predict Functions for DataSHIELD
 
 The package provides base functionality to push `R` objects to servers
-using the DataSHIELD\](<https://www.datashield.ac.uk/>) infrastructure
-for distributed computing. Additionally, it is possible to calculate
+using the DataSHIELD\](<https://www.datashield.org/>) infrastructure for
+distributed computing. Additionally, it is possible to calculate
 predictions on the server for a specific model. Combining these allows
 to push a model from the local machine to all servers running DataSHIELD
 and predicting on that model with data exclusively hold by the server.
