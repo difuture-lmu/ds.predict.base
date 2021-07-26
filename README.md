@@ -2,10 +2,8 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 [![Actions
-Status](https://github.com/difuture-lmu/ds.predict.base/workflows/R-CMD-check/badge.svg)](https://github.com/difuture-lmu/ds.predict.base/actions)
-[![License: LGPL
-v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
-[![codecov](https://codecov.io/gh/difuture/ds.predict.base/branch/master/graph/badge.svg?token=OLIPLWDTN5)](https://codecov.io/gh/difuture/ds.predict.base)
+Status](https://github.com/difuture-lmu/ds.predict.base/workflows/R-CMD-check/badge.svg)](https://github.com/difuture-lmu/ds.predict.base/actions) [![License: LGPL
+v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) [![codecov](https://codecov.io/gh/difuture-lmu/ds.predict.base/branch/master/graph/badge.svg?token=OLIPLWDTN5)](https://codecov.io/gh/difuture-lmu/ds.predict.base)
 
 # Base Predict Functions for DataSHIELD
 
