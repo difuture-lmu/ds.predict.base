@@ -4,11 +4,9 @@
 \alias{removeMissings}
 \title{Remove missing values from data}
 \usage{
-removeMissings(connections, symbol)
+removeMissings(symbol, new_symbol)
 }
 \arguments{
-\item{connections}{\link[DSI:connection]{DSI::connection} Connection to an OPAL server.}
-
 \item{symbol}{\link{character(1L)} R object from which missings should be removed.}
 
 \item{new_symbol}{\link{character(1L)} New R object to which the data is written.}
