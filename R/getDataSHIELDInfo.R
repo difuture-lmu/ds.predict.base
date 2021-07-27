@@ -6,5 +6,5 @@
 #' @author Daniel S.
 #' @export
 getDataSHIELDInfo = function() {
-  return(sessionInfo())
+  return(list(session_info = sessionInfo(), pcks = installed.packages()))
 }
