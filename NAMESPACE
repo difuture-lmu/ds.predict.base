@@ -3,6 +3,7 @@
 export(assignPredictModel)
 export(decodeBinary)
 export(encodeObject)
+export(getDataSHIELDInfo)
 export(predictModel)
 export(pushObject)
 export(removeMissings)
