@@ -68,4 +68,11 @@ test_that("all methods can be used and produce reasonable output", {
   nuisance = lapply(DSI::datashield.symbols(connections), function(s) {
      expect_true("dat_no_na" %in% s)
   })
+
+  expect_silent({ ri = datashield.aggregate(connections, quote(getDataSHIELDInfo())) })
+  expect_equal(class(ri), "list")
+  nuisance = lapply(ri, function(r) {
+    expect_equal(names(r), c("session_info", "pcks"))
+  })
+  datashield.logout(connections)
 })
