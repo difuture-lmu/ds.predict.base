@@ -41,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: |
           install.packages(c("remotes"))
-          remotes::install_deps(dependencies = TRUE)
+          remotes::install_deps(dependencies = TRUE, repos = c(getOption("repos"), "https://cran.obiba.org"))
           remotes::install_cran("lintr")
         shell: Rscript {0}
 
