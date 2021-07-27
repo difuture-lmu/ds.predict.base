@@ -44,9 +44,9 @@ test_that("all methods can be used and produce reasonable output", {
     password = password,
     table    = "CNSIM.CNSIM2"
   )
-  connections = datashield.login(logins = builder$build(), assign = TRUE)
+  connections <<- datashield.login(logins = builder$build(), assign = TRUE)
 
-  expect_message(pushObject(connections, mod))
+  expect_silent(pushObject(connections, mod))
   nuisance = lapply(DSI::datashield.symbols(connections), function(s) {
      expect_true("mod" %in% s)
   })
