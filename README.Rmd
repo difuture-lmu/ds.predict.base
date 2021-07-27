@@ -12,8 +12,12 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "Readme_files/"
 )
-if (! requireNamespace("here", quietly = TRUE)) install.packages("here")
-if (! requireNamespace("opalr", quietly = TRUE)) install.packages("opalr")
+
+pkgs = c("here", "opalr", "DSI", "DSOpal", "dsBaseClient")
+for (pkg in pkgs) {
+  if (! requireNamespace(pkg, quietly = TRUE))
+    install.packages("pkg", c(getOption("repos"), "https://cran.obiba.org"))
+}
 devtools::install(quiet = TRUE, upgrade = "always")
 
 ## Install packages on the DataSHIELD test machine:
