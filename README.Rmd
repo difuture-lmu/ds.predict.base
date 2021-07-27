@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 pkgs = c("here", "opalr", "DSI", "DSOpal", "dsBaseClient")
 for (pkg in pkgs) {
   if (! requireNamespace(pkg, quietly = TRUE))
-    install.packages("pkg", repos = c(getOption("repos"), "https://cran.obiba.org"))
+    install.packages(pkg, repos = c(getOption("repos"), "https://cran.obiba.org"))
 }
 devtools::install(quiet = TRUE, upgrade = "always")
 
