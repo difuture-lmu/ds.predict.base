@@ -15,9 +15,12 @@ Depends:
 Imports:
     checkmate,
     DSI,
+    DSOpal,
+    dsBaseClient,
     stringr
 Suggests:
-    testthat
+    testthat,
+    ropal
 AssignMethods:
     decodeBinary,
     assignPredictModel,

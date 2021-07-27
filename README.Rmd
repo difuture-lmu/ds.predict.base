@@ -97,14 +97,14 @@ username = "administrator"
 password = "password"
 
 builder$append(
-  server   = "ds-test-server-dummy1",
+  server   = "ds1",
   url      = surl,
   user     = username,
   password = password,
   table    = "CNSIM.CNSIM1"
 )
 builder$append(
-  server   = "ds-test-server-dummy2",
+  server   = "ds2",
   url      = surl,
   user     = username,
   password = password,
@@ -162,8 +162,32 @@ datashield.logout(connections)
 
 ## Deploy information:
 
-Build at `r as.character(Sys.time())`. Session info:
+__Build at `r as.character(Sys.time())`.__
 
-```{r}
-sessionInfo()
+```{r, include=FALSE}
+ri_l  = sessionInfo()
+ri_ds = datashield.aggregate(connections, quote(getDataSHIELDInfo()))
+client_pkgs = c("DSI", "DSOpal", "dsBaseClient")
+remote_pkgs = c("dsBase", "resourcer", "ds.predict.base")
 ```
+
+- Local machine:
+    - `R` version: `r ri_l$R.version$version.string`
+    - Version of DataSHELD client packages:
+```{r, echo=FALSE}
+knitr::kable(installed.packages()[client_pkgs, "Version", drop = FALSE])
+```
+- Remote DataSHIELD machines:
+    - `R` version of `r names(ri_ds)[1]`: `r ri_ds[[1]]$session$R.version$version.string`
+    - `R` version of `r names(ri_ds)[2]`: `r ri_ds[[2]]$session$R.version$version.string`
+    - Version of server packages:
+```{r, echo=FALSE}
+dfv = do.call(cbind, lapply(names(ri_ds), function(nm) {
+  out = ri_ds[[nm]]$pcks[remote_pkgs, "Version", drop = FALSE]
+  colnames(out) = paste0(nm, ": ", colnames(out))
+  out
+}))
+knitr::kable(dfv)
+```
+
+
