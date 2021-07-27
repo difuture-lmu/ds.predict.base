@@ -20,7 +20,7 @@ Imports:
     stringr
 Suggests:
     testthat,
-    ropal
+    opalr
 AssignMethods:
     decodeBinary,
     assignPredictModel,

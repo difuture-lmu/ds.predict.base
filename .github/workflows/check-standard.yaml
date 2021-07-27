@@ -72,7 +72,6 @@ jobs:
         run: |
           remotes::install_deps(dependencies = TRUE, repos = c(getOption("repos"), "https://cran.obiba.org"))
           remotes::install_cran("rcmdcheck")
-          install.packages("ropal", repos = c(getOption("repos"), "https://cran.obiba.org"))
         shell: Rscript {0}
 
       - name: Check
