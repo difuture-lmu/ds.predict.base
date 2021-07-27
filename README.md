@@ -135,13 +135,13 @@ summary(mod)
 #> Number of Fisher Scoring iterations: 14
 ```
 
-#### ds.predict.pase functionality
+#### ds.predict.base functionality
 
 Upload model to DataSHIELD server:
 
 ``` r
 pushObject(connections, mod)
-#> [2021-07-27 07:04:48] Your object is bigger than 1 MB. Uploading larger objects may take some time.
+#> [2021-07-27 07:48:50] Your object is bigger than 1 MB. Uploading larger objects may take some time.
 
 # Check if model "mod" is now available:
 DSI::datashield.symbols(connections)
@@ -237,7 +237,7 @@ datashield.logout(connections)
 
 ## Deploy information:
 
-Build at 2021-07-27 07:06:17. Session info:
+Build at 2021-07-27 07:49:47. Session info:
 
 ``` r
 sessionInfo()
