@@ -12,11 +12,11 @@ Description: This package allows the user to push R objects to a DataSHIELD serv
     model is present on the server, it is possible to calculate predictions on the server.
 Depends:
     R (>= 3.1.0)
-Imports:
-    checkmate,
     DSI,
     DSOpal,
-    dsBaseClient,
+    dsBaseClient
+Imports:
+    checkmate,
     stringr
 Suggests:
     testthat,
