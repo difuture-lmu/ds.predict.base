@@ -61,14 +61,14 @@ username = "administrator"
 password = "password"
 
 builder$append(
-  server   = "ds-test-server-dummy1",
+  server   = "ds1",
   url      = surl,
   user     = username,
   password = password,
   table    = "CNSIM.CNSIM1"
 )
 builder$append(
-  server   = "ds-test-server-dummy2",
+  server   = "ds2",
   url      = surl,
   user     = username,
   password = password,
@@ -87,10 +87,10 @@ connections = datashield.login(logins = builder$build(), assign = TRUE)
 
 ### Get available tables:
 datashield.symbols(connections)
-#> $`ds-test-server-dummy1`
+#> $ds1
 #> [1] "D"
 #> 
-#> $`ds-test-server-dummy2`
+#> $ds2
 #> [1] "D"
 ```
 
@@ -141,22 +141,22 @@ Upload model to DataSHIELD server:
 
 ``` r
 pushObject(connections, mod)
-#> [2021-07-27 07:48:50] Your object is bigger than 1 MB. Uploading larger objects may take some time.
+#> [2021-07-27 08:56:28] Your object is bigger than 1 MB. Uploading larger objects may take some time.
 
 # Check if model "mod" is now available:
 DSI::datashield.symbols(connections)
-#> $`ds-test-server-dummy1`
+#> $ds1
 #> [1] "D"   "mod"
 #> 
-#> $`ds-test-server-dummy2`
+#> $ds2
 #> [1] "D"   "mod"
 
 # Check class of uploaded "mod":
 ds.class("mod")
-#> $`ds-test-server-dummy1`
+#> $ds1
 #> [1] "glm" "lm" 
 #> 
-#> $`ds-test-server-dummy2`
+#> $ds2
 #> [1] "glm" "lm"
 ```
 
@@ -168,34 +168,34 @@ predictModel(connections, mod, "pred", "D")
 
 # Check if prediction "pred" is now available:
 datashield.symbols(connections)
-#> $`ds-test-server-dummy1`
+#> $ds1
 #> [1] "D"    "mod"  "pred"
 #> 
-#> $`ds-test-server-dummy2`
+#> $ds2
 #> [1] "D"    "mod"  "pred"
 
 # Summary of "pred":
 ds.summary("pred")
-#> $`ds-test-server-dummy1`
-#> $`ds-test-server-dummy1`$class
+#> $ds1
+#> $ds1$class
 #> [1] "numeric"
 #> 
-#> $`ds-test-server-dummy1`$length
+#> $ds1$length
 #> [1] 2163
 #> 
-#> $`ds-test-server-dummy1`$`quantiles & mean`
+#> $ds1$`quantiles & mean`
 #>        5%       10%       25%       50%       75%       90%       95%      Mean 
 #> -6.219511 -5.933623 -5.451908 -4.892368 -4.330816 -3.828193 -3.484391 -4.871689 
 #> 
 #> 
-#> $`ds-test-server-dummy2`
-#> $`ds-test-server-dummy2`$class
+#> $ds2
+#> $ds2$class
 #> [1] "numeric"
 #> 
-#> $`ds-test-server-dummy2`$length
+#> $ds2$length
 #> [1] 3088
 #> 
-#> $`ds-test-server-dummy2`$`quantiles & mean`
+#> $ds2$`quantiles & mean`
 #>        5%       10%       25%       50%       75%       90%       95%      Mean 
 #> -6.241525 -5.940107 -5.476556 -4.904900 -4.336034 -3.839188 -3.426842 -4.879383
 ```
@@ -205,74 +205,66 @@ Now do the same but assign the values using response type “response”:
 ``` r
 predictModel(connections, mod, "pred", "D", predict_fun = "predict(mod, newdata = D, type = 'response')")
 ds.summary("pred")
-#> $`ds-test-server-dummy1`
-#> $`ds-test-server-dummy1`$class
+#> $ds1
+#> $ds1$class
 #> [1] "numeric"
 #> 
-#> $`ds-test-server-dummy1`$length
+#> $ds1$length
 #> [1] 2163
 #> 
-#> $`ds-test-server-dummy1`$`quantiles & mean`
+#> $ds1$`quantiles & mean`
 #>          5%         10%         25%         50%         75%         90% 
 #> 0.001986267 0.002641871 0.004269807 0.007447750 0.012985956 0.021285935 
 #>         95%        Mean 
 #> 0.029759964 0.012757105 
 #> 
 #> 
-#> $`ds-test-server-dummy2`
-#> $`ds-test-server-dummy2`$class
+#> $ds2
+#> $ds2$class
 #> [1] "numeric"
 #> 
-#> $`ds-test-server-dummy2`$length
+#> $ds2$length
 #> [1] 3088
 #> 
-#> $`ds-test-server-dummy2`$`quantiles & mean`
+#> $ds2$`quantiles & mean`
 #>          5%         10%         25%         50%         75%         90% 
 #> 0.001943102 0.002624839 0.004166283 0.007355694 0.012919244 0.021058086 
 #>         95%        Mean 
 #> 0.031467146 0.013243564
+```
 
+``` r
 datashield.logout(connections)
 ```
 
 ## Deploy information:
 
-Build at 2021-07-27 07:49:47. Session info:
+**Build on 2021-07-27 08:57:56.**
 
-``` r
-sessionInfo()
-#> R version 4.1.0 (2021-05-18)
-#> Platform: x86_64-apple-darwin17.0 (64-bit)
-#> Running under: macOS Catalina 10.15.7
-#> 
-#> Matrix products: default
-#> BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
-#> LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
-#> 
-#> locale:
-#> [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
-#> 
-#> attached base packages:
-#> [1] stats     graphics  grDevices utils     datasets  methods   base     
-#> 
-#> other attached packages:
-#> [1] ds.predict.base_0.0.1 dsBaseClient_6.1.1    DSOpal_1.3.0         
-#> [4] opalr_3.0.0           httr_1.4.2            DSI_1.3.0            
-#> [7] R6_2.5.0              progress_1.2.2       
-#> 
-#> loaded via a namespace (and not attached):
-#>  [1] tidyselect_1.1.1  xfun_0.24         remotes_2.4.0     purrr_0.3.4      
-#>  [5] haven_2.4.1       labelled_2.8.0    vctrs_0.3.8       generics_0.1.0   
-#>  [9] testthat_3.0.4    usethis_2.0.1     htmltools_0.5.1.1 yaml_2.2.1       
-#> [13] utf8_1.2.2        rlang_0.4.11      pkgbuild_1.2.0    pillar_1.6.1     
-#> [17] glue_1.4.2        withr_2.4.2       sessioninfo_1.1.1 lifecycle_1.0.0  
-#> [21] stringr_1.4.0     devtools_2.4.2    memoise_2.0.0     evaluate_0.14    
-#> [25] knitr_1.33        forcats_0.5.1     callr_3.7.0       fastmap_1.1.0    
-#> [29] ps_1.6.0          curl_4.3.2        fansi_0.5.0       backports_1.2.1  
-#> [33] checkmate_2.0.0   cachem_1.0.5      desc_1.3.0        pkgload_1.2.1    
-#> [37] jsonlite_1.7.2    mime_0.11         fs_1.5.0          hms_1.1.0        
-#> [41] digest_0.6.27     stringi_1.7.3     processx_3.5.2    dplyr_1.0.7      
-#> [45] rprojroot_2.0.2   here_1.0.1        cli_3.0.1         tools_4.1.0      
-#> [49] magrittr_2.0.1    tibble_3.1.3      crayon_1.4.1      pkgconfig_2.0.3  
-#> [53] ellipsis_0.3.2    prettyunits_1.1.1 rmarkdown_2.9     compiler_4.1.0
-```
+This readme is built automatically after each push to the repository.
+Hence, it also is a test if the functionality of the package works also
+on the DataSHIELD servers. We also test these functionality in
+`tests/testthat/test_on_active_server.R`. The system information of the
+local and remote servers are as followed:
+
+  - Local machine:
+      - `R` version: R version 4.1.0 (2021-05-18)
+      - Version of DataSHELD client packages:
+
+| Package         | Version |
+| :-------------- | :------ |
+| DSI             | 1.3.0   |
+| DSOpal          | 1.3.0   |
+| dsBaseClient    | 6.1.1   |
+| ds.predict.base | 0.0.1   |
+
+  - Remote DataSHIELD machines:
+      - `R` version of ds1: R version 4.1.0 (2021-05-18)
+      - `R` version of ds2: R version 4.1.0 (2021-05-18)
+      - Version of server packages:
+
+| Package         | ds1: Version | ds2: Version |
+| :-------------- | :----------- | :----------- |
+| dsBase          | 6.1.1        | 6.1.1        |
+| resourcer       | 1.1.0        | 1.1.0        |
+| ds.predict.base | 0.0.1        | 0.0.1        |
