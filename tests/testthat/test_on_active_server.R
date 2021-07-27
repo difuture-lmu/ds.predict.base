@@ -52,7 +52,7 @@ test_that("all methods can be used and produce reasonable output", {
   })
 
   datashield.assign(connections, "dat", quote(iris))
-  expect_message(predictModel(connections, mod, "pred", "dat"))
+  expect_silent(predictModel(connections, mod, "pred", "dat"))
   nuisance = lapply(DSI::datashield.symbols(connections), function(s) {
      expect_true("pred" %in% s)
   })
@@ -64,7 +64,7 @@ test_that("all methods can be used and produce reasonable output", {
     expect_equal(dss$`quantiles & mean`["75%"], quantile(p, 0.75))
   })
 
-  expect_message(datashield.assign(connections, "dat_no_na", quote(removeMissings("dat"))))
+  expect_silent(datashield.assign(connections, "dat_no_na", quote(removeMissings("dat"))))
   nuisance = lapply(DSI::datashield.symbols(connections), function(s) {
      expect_true("dat_no_na" %in% s)
   })
