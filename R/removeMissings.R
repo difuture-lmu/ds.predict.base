@@ -7,7 +7,6 @@
 #' @export
 removeMissings = function(symbol) {
   if (missing(symbol)) stop("Symbol must be given.")
-  if (missing(new_symbol)) new_symbol = symbol
 
   obj = eval(parse(text = symbol))
   return(na.omit(obj))

@@ -22,6 +22,8 @@ AssignMethods:
     decodeBinary,
     assignPredictModel,
     removeMissings
+AggregateMethods:
+    getDataSHIELDInfo
 Options: datashield.privacyLevel=5
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)

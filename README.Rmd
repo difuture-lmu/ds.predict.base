@@ -128,7 +128,7 @@ summary(mod)
 ```
 
 
-#### ds.predict.pase functionality
+#### ds.predict.base functionality
 
 Upload model to DataSHIELD server:
 ```{r}
