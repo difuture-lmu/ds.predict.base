@@ -4,14 +4,52 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include=FALSE}
+```{r setup, include=FALSE}
+options(width = 80)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "Readme_files/",
-  eval = FALSE
+  fig.path = "Readme_files/"
 )
-devtools::load_all()
+if (! requireNamespace("here", quietly = TRUE)) install.packages("here")
+devtools::install(quiet = TRUE, upgrade = "always")
+
+## Install packages on the DataSHIELD test machine:
+base_dir = here::here()
+surl     = "https://opal-demo.obiba.org/"
+username = "administrator"
+password = "password"
+
+opal = opalr::opal.login(username = username, password = password, url = surl)
+
+pkgs = c("ds.predict.base")
+for (pkg in pkgs) {
+  check1 = opalr::dsadmin.install_github_package(opal = opal, pkg = pkg, username = "difuture-lmu")
+  if (! check1)
+    stop("[", Sys.time(), "] Was not able to install ", pkg, "!")
+
+  check2 = opalr::dsadmin.publish_package(opal = opal, pkg = pkg)
+  if (! check2)
+    stop("[", Sys.time(), "] Was not able to publish methods of ", pkg, "!")
+}
+
+## Create dummy model:
+#local_data1 = read.csv(paste0(base_dir, "/data/ds-test-cnsim1.csv"))
+#local_data2 = read.csv(paste0(base_dir, "/data/ds-test-cnsim2.csv"))
+#
+#local_data = rbind(local_data1, local_data2)
+#local_data$GENDER = as.factor(local_data$GENDER)
+#local_data$DIS_CVA = as.factor(local_data$DIS_CVA)
+#local_data$DIS_AMI = as.factor(local_data$DIS_AMI)
+#local_data$MEDI_LPD = as.factor(local_data$MEDI_LPD)
+#
+#local_data = na.omit(local_data)
+
+## Train model:
+#mod = glm(DIS_DIAB ~ LAB_TSC + LAB_TRIG + LAB_HDL + LAB_GLUC_ADJUSTED + GENDER + DIS_CVA + MEDI_LPD + DIS_AMI, data = local_data, family = binomial())
+#p = predict(mod, type = "response")
+#mlr::measureAUC(truth = local_data$MEDI_LPD, probabilities = p, positive = 1)
 ```
 
 [![Actions Status](https://github.com/difuture-lmu/ds.predict.base/workflows/R-CMD-check/badge.svg)](https://github.com/difuture-lmu/ds.predict.base/actions) [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) [![codecov](https://codecov.io/gh/difuture-lmu/ds.predict.base/branch/master/graph/badge.svg?token=OLIPLWDTN5)](https://codecov.io/gh/difuture-lmu/ds.predict.base)
@@ -24,57 +62,71 @@ The package provides base functionality to push `R` objects to servers using the
 
 At the moment, there is no CRAN version available. Install the development version from GitHub:
 
-```{r,eval=FALSE}
+```{r, eval=FALSE}
 remotes::install_github("difuture-lmu/ds.predict.base")
 ```
 
-#### Register assign methods
+#### Register methods
 
-It is necessary to register the assign methods in the OPAL administration. The assign methods are:
-
-- `decodeBinary`
-- `assignPredictModel`
-
-These methods are registered automatically when publishing the package on OPAL (see [`DESCRIPTION`](https://github.com/difuture/ds.predict.base/blob/master/DESCRIPTION)).
+It is necessary to register the assign and aggregate methods in the OPAL administration. These methods are registered automatically when publishing the package on OPAL (see [`DESCRIPTION`](https://github.com/difuture/ds.predict.base/blob/master/DESCRIPTION)).
 
 Note that the package needs to be installed at both locations, the server and the analysts machine.
 
 ## Usage
 
-```{r, results="hide", warnings=FALSE}
+```{r}
 library(DSI)
 library(DSOpal)
-library(DSLite)
 library(dsBaseClient)
 
 library(ds.predict.base)
+```
 
-builder = DSI::newDSLoginBuilder()
+#### Log into DataSHIELD server
+
+```{r}
+builder = newDSLoginBuilder()
+
+surl     = "https://opal-demo.obiba.org/"
+username = "administrator"
+password = "password"
 
 builder$append(
-  server   = "ibe",
-  url      = "******",
-  user     = "***",
-  password = "******",
-  table    = "ProVal.KUM"
+  server   = "ds-test-server-dummy1",
+  url      = surl,
+  user     = username,
+  password = password,
+  table    = "CNSIM.CNSIM1"
+)
+builder$append(
+  server   = "ds-test-server-dummy2",
+  url      = surl,
+  user     = username,
+  password = password,
+  table    = "CNSIM.CNSIM2"
 )
 
-logindata = builder$build()
-connections = DSI::datashield.login(logins = logindata, assign = TRUE, symbol = "D",
-  opts = list(ssl_verifyhost = 0, ssl_verifypeer = 0))
+connections = datashield.login(logins = builder$build(), assign = TRUE)
 
 ### Get available tables:
-DSI::datashield.symbols(connections)
+datashield.symbols(connections)
+```
 
-### Test data with same structure as data on test server:
-dat   = cbind(age = sample(20:100, 100L, TRUE), height = runif(100L, 150, 220))
-probs = 1 / (1 + exp(-as.numeric(dat %*% c(-3, 1))))
-dat   = data.frame(gender = rbinom(100L, 1L, probs), dat)
+#### Load test model
 
-### Model we want to upload:
-mod = glm(gender ~ age + height, family = "binomial", data = dat)
+```{r}
+# Model was fitted on the CNSIM data provided by DataSHIELD. The
+# response variable is if a patient have had diabetes or not.
 
-### Upload model to DataSHIELD server
+load("data/mod.Rda")
+summary(mod)
+```
+
+
+#### ds.predict.pase functionality
+
+Upload model to DataSHIELD server:
+```{r}
 pushObject(connections, mod)
 
 # Check if model "mod" is now available:
@@ -82,20 +134,31 @@ DSI::datashield.symbols(connections)
 
 # Check class of uploaded "mod":
 ds.class("mod")
+```
 
-# Now predict on uploaded model and data set "D" and store as object "pred":
-predictModel(connections, mod, "pred", dat_name = "D")
+Now predict on uploaded model and data set "D" and store as object "pred":
+```{r}
+predictModel(connections, mod, "pred", "D")
 
 # Check if prediction "pred" is now available:
-DSI::datashield.symbols(connections)
+datashield.symbols(connections)
 
 # Summary of "pred":
 ds.summary("pred")
+```
 
-# Now assign values with response type "response":
+Now do the same but assign the values using response type "response":
+```{r}
 predictModel(connections, mod, "pred", "D", predict_fun = "predict(mod, newdata = D, type = 'response')")
 ds.summary("pred")
 
-DSI::datashield.logout(connections)
+datashield.logout(connections)
 ```
 
+## Deploy information:
+
+Build at `r as.character(Sys.time())`. Session info:
+
+```{r}
+sessionInfo()
+```

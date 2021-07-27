@@ -4,12 +4,13 @@
 \alias{removeMissings}
 \title{Remove missing values from data}
 \usage{
-removeMissings(symbol, new_symbol)
+removeMissings(symbol)
 }
 \arguments{
-\item{symbol}{\link{character(1L)} R object from which missings should be removed.}
-
-\item{new_symbol}{\link{character(1L)} New R object to which the data is written.}
+\item{symbol}{(\code{character(1L)}) R object from which missings should be removed.}
+}
+\value{
+Object defined in symbol wrapped by \code{na.omit}.
 }
 \description{
 Remove missing values from data and assign it to new data or old data.
