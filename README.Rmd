@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
   fig.path = "Readme_files/"
 )
 if (! requireNamespace("here", quietly = TRUE)) install.packages("here")
+if (! requireNamespace("opalr", quietly = TRUE)) install.packages("opalr")
 devtools::install(quiet = TRUE, upgrade = "always")
 
 ## Install packages on the DataSHIELD test machine:
@@ -35,8 +36,8 @@ for (pkg in pkgs) {
 }
 
 ## Create dummy model:
-#local_data1 = read.csv(paste0(base_dir, "/data/ds-test-cnsim1.csv"))
-#local_data2 = read.csv(paste0(base_dir, "/data/ds-test-cnsim2.csv"))
+#local_data1 = read.csv(paste0(base_dir, "/inst/extdata/ds-test-cnsim1.csv"))
+#local_data2 = read.csv(paste0(base_dir, "/inst/extdata/ds-test-cnsim2.csv"))
 #
 #local_data = rbind(local_data1, local_data2)
 #local_data$GENDER = as.factor(local_data$GENDER)
@@ -118,7 +119,7 @@ datashield.symbols(connections)
 # Model was fitted on the CNSIM data provided by DataSHIELD. The
 # response variable is if a patient have had diabetes or not.
 
-load("data/mod.Rda")
+load("inst/extdata/mod.Rda")
 summary(mod)
 ```
 
