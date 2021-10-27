@@ -18,15 +18,13 @@
 #' @param check_serialization (`logical(1L)`) Check if the serialized model can be deserialized locally
 #'   (default is `TRUE`).
 #' @param package (`character(1L)`) Package required for model predictions (default is `NULL`).
-#' @param install_if_not_available (`logical(1L)`) Install package if it is not installed (default is `TRUE`).
 #' @param just_return_call (`logical(1L)`) Just return the call and not execute on server (mainly for testing purposes,
 #'   default is `FALSE`).
 #' @return The prediction object returned from `DSI::datashield.assign`
 #' @author Daniel S.
 #' @export
 predictModel = function(connections, mod, pred_name, dat_name = "D", predict_fun = "predict(mod, newdata = D)",
-  repush = FALSE, sep = "-", check_serialization = TRUE, package = NULL, install_if_not_available = TRUE,
-  just_return_call = FALSE) {
+  repush = FALSE, sep = "-", check_serialization = TRUE, package = NULL, just_return_call = FALSE) {
 
   checkmate::assertLogical(repush, len = 1L, null.ok = FALSE, any.missing = FALSE)
   checkmate::assertCharacter(pred_name, len = 1L, null.ok = FALSE, any.missing = FALSE)
@@ -47,7 +45,7 @@ predictModel = function(connections, mod, pred_name, dat_name = "D", predict_fun
     }
   }
 
-  if (repush) pushObject(connections, mod, mod_name, sep, check_serialization, package, install_if_not_available)
+  if (repush) pushObject(connections, mod, mod_name, sep, check_serialization, package)
 
   call = stringr::str_replace(predict_fun, "mod", mod_name)
   call = stringr::str_replace(call, "D", dat_name)

@@ -14,7 +14,6 @@ predictModel(
   sep = "-",
   check_serialization = TRUE,
   package = NULL,
-  install_if_not_available = TRUE,
   just_return_call = FALSE
 )
 }
@@ -41,8 +40,6 @@ gives the possibility to call arbitrary predict function like
 (default is \code{TRUE}).}
 
 \item{package}{(\code{character(1L)}) Package required for model predictions (default is \code{NULL}).}
-
-\item{install_if_not_available}{(\code{logical(1L)}) Install package if it is not installed (default is \code{TRUE}).}
 
 \item{just_return_call}{(\code{logical(1L)}) Just return the call and not execute on server (mainly for testing purposes,
 default is \code{FALSE}).}

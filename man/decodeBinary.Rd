@@ -4,7 +4,7 @@
 \alias{decodeBinary}
 \title{Deserialize object}
 \usage{
-decodeBinary(bin, sep = "-", package = NULL, install_if_not_available = TRUE)
+decodeBinary(bin, sep = "-", package = NULL)
 }
 \arguments{
 \item{bin}{(\code{character(1L)}) Binary string value containing the serialized model.}
@@ -12,8 +12,6 @@ decodeBinary(bin, sep = "-", package = NULL, install_if_not_available = TRUE)
 \item{sep}{(\code{character(1L)}) Separator used to collapse the binary elements (default is \code{-}).}
 
 \item{package}{(\code{character(1L)}) Package required for object deserialization (default is \code{NULL}).}
-
-\item{install_if_not_available}{(\code{logical(1L)}) Install package if it is not installed (default is \code{TRUE}).}
 }
 \value{
 Deserialized object from \code{bin}

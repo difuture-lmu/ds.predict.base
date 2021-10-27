@@ -8,7 +8,6 @@
 #' @param check_serialization (`logical(1L)`) Check if the serialized model can be deserialized
 #'   locally (default is `TRUE`).
 #' @param package (`character(1L)`) Package required for model predictions (default is `NULL`).
-#' @param install_if_not_available (`logical(1L)`) Install package if it is not installed (default is `TRUE`).
 #' @param just_return_call (`logical(1L)`) Just return the call and not execute on server (mainly for testing purposes,
 #'   default is `FALSE`).
 #' @author Daniel S.
@@ -18,16 +17,15 @@
 #' all.equal(iris, eval(parse(text = cl)))
 #' @export
 pushObject = function(connections, obj, sep = "-", check_serialization = TRUE, package = NULL,
-  install_if_not_available = TRUE, just_return_call = FALSE) {
+  just_return_call = FALSE) {
 
   obj_name = deparse(substitute(obj))
 
   # Checks are done in encodeObject:
   bin = encodeObject(obj, obj_name, sep, check_serialization)
-  if (is.null(package)) { package = "NULL" } else { packge = paste0("\"", package, "\"")}
+  if (is.null(package)) package = "NULL" else packge = paste0("\"", package, "\"")
 
-  call = paste0("decodeBinary(\"", bin, "\", \"", sep = attr(bin, "sep"), "\", ",
-    package, ",", install_if_not_available, ")")
+  call = paste0("decodeBinary(\"", bin, "\", \"", sep = attr(bin, "sep"), "\", ", package, ")")
   cq = NULL # Dummy for checks
   eval(parse(text = paste0("cq = quote(", call, ")")))
 
