@@ -141,7 +141,7 @@ Upload model to DataSHIELD server:
 
 ``` r
 pushObject(connections, mod)
-#> [2021-07-27 09:46:05] Your object is bigger than 1 MB. Uploading larger objects may take some time.
+#> [2021-10-27 12:31:50] Your object is bigger than 1 MB. Uploading larger objects may take some time.
 
 # Check if model "mod" is now available:
 DSI::datashield.symbols(connections)
@@ -239,7 +239,7 @@ datashield.logout(connections)
 
 ## Deploy information:
 
-**Build on 2021-07-27 09:46:54.**
+**Build on 2021-10-27 12:32:45.**
 
 This readme is built automatically after each push to the repository.
 Hence, it also is a test if the functionality of the package works also
@@ -248,23 +248,23 @@ on the DataSHIELD servers. We also test these functionality in
 local and remote servers are as followed:
 
   - Local machine:
-      - `R` version: R version 4.1.0 (2021-05-18)
+      - `R` version: R version 4.1.1 (2021-08-10)
       - Version of DataSHELD client packages:
 
 | Package         | Version |
 | :-------------- | :------ |
 | DSI             | 1.3.0   |
-| DSOpal          | 1.3.0   |
+| DSOpal          | 1.3.1   |
 | dsBaseClient    | 6.1.1   |
 | ds.predict.base | 0.0.1   |
 
   - Remote DataSHIELD machines:
-      - `R` version of ds1: R version 4.1.0 (2021-05-18)
-      - `R` version of ds2: R version 4.1.0 (2021-05-18)
+      - `R` version of ds1: R version 4.1.1 (2021-08-10)
+      - `R` version of ds2: R version 4.1.1 (2021-08-10)
       - Version of server packages:
 
 | Package         | ds1: Version | ds2: Version |
 | :-------------- | :----------- | :----------- |
 | dsBase          | 6.1.1        | 6.1.1        |
-| resourcer       | 1.1.0        | 1.1.0        |
+| resourcer       | 1.1.1        | 1.1.1        |
 | ds.predict.base | 0.0.1        | 0.0.1        |
