@@ -46,13 +46,13 @@ test_that("all methods can be used and produce reasonable output", {
   )
   connections <<- datashield.login(logins = builder$build(), assign = TRUE)
 
-  expect_message(pushObject(connections, mod))
+  expect_silent(pushObject(connections, mod))
   nuisance = lapply(DSI::datashield.symbols(connections), function(s) {
      expect_true("mod" %in% s)
   })
 
   datashield.assign(connections, "dat", quote(iris))
-  expect_message(predictModel(connections, mod, "pred", "dat"))
+  expect_silent(predictModel(connections, mod, "pred", "dat"))
   nuisance = lapply(DSI::datashield.symbols(connections), function(s) {
      expect_true("pred" %in% s)
   })
@@ -64,12 +64,12 @@ test_that("all methods can be used and produce reasonable output", {
     expect_equal(dss$`quantiles & mean`["75%"], quantile(p, 0.75))
   })
 
-  expect_message(datashield.assign(connections, "dat_no_na", quote(removeMissings("dat"))))
+  expect_silent(datashield.assign(connections, "dat_no_na", quote(removeMissings("dat"))))
   nuisance = lapply(DSI::datashield.symbols(connections), function(s) {
      expect_true("dat_no_na" %in% s)
   })
 
-  expect_message({ ri = datashield.aggregate(connections, quote(getDataSHIELDInfo())) })
+  expect_silent({ ri = datashield.aggregate(connections, quote(getDataSHIELDInfo())) })
   expect_equal(class(ri), "list")
   nuisance = lapply(ri, function(r) {
     expect_equal(names(r), c("session_info", "pcks"))

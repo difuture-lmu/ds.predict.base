@@ -9,5 +9,5 @@ removeMissings = function(symbol) {
   if (missing(symbol)) stop("Symbol must be given.")
 
   obj = eval(parse(text = symbol))
-  return(na.omit(obj))
+  return(stats::na.omit(obj))
 }
