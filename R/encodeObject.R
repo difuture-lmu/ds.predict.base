@@ -38,7 +38,7 @@ encodeObject = function(obj, obj_name = NULL, sep = "-", check_serialization = T
   osize = utils::object.size(obj_binary_str_collapsed)
   if (osize > 1024^2) {
     message("[", Sys.time(), "] Your object is bigger than 1 MB (", round(osize, 1),
-      " MB). Uploading larger objects may take some time.")
+      " MB). Uploading larger objects may take some time. (For reference: A 2.5 MB sized model took ~12 min.)")
   }
   names(obj_binary_str_collapsed) = obj_name
   attr(obj_binary_str_collapsed, "sep") = sep
