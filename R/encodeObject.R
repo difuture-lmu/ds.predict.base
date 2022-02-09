@@ -35,8 +35,8 @@ encodeObject = function(obj, obj_name = NULL, sep = "-", check_serialization = T
     if (! all.equal(obj, obj_b)) stop("Model cannot serialized and deserialized into equal object!")
   }
 
-  osize = utils::object.size(obj_binary_str_collapsed)
-  if (osize > 1024^2) {
+  osize = utils::object.size(obj_binary_str_collapsed) / 1024^2
+  if (osize > 1) {
     message("[", Sys.time(), "] Your object is bigger than 1 MB (", round(osize, 1),
       " MB). Uploading larger objects may take some time. (For reference: A 2.5 MB sized model took ~12 min.)")
   }
