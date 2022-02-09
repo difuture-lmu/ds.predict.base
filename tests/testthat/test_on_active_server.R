@@ -12,7 +12,7 @@ test_that("all methods can be used and produce reasonable output", {
 
   pkgs = c("ds.predict.base")
   for (pkg in pkgs) {
-    check1 = opalr::dsadmin.install_github_package(opal = opal, pkg = pkg, username = "difuture-lmu")
+    check1 = opalr::dsadmin.install_github_package(opal = opal, pkg = pkg, username = "difuture-lmu", ref = "main")
     if (! check1)
       stop("[", Sys.time(), "] Was not able to install ", pkg, "!")
 
@@ -46,13 +46,13 @@ test_that("all methods can be used and produce reasonable output", {
   )
   connections <<- datashield.login(logins = builder$build(), assign = TRUE)
 
-  expect_silent(pushObject(connections, mod))
+  pushObject(connections, mod)
   nuisance = lapply(DSI::datashield.symbols(connections), function(s) {
      expect_true("mod" %in% s)
   })
 
   datashield.assign(connections, "dat", quote(iris))
-  expect_silent(predictModel(connections, mod, "pred", "dat"))
+  predictModel(connections, mod, "pred", "dat")
   nuisance = lapply(DSI::datashield.symbols(connections), function(s) {
      expect_true("pred" %in% s)
   })
@@ -64,12 +64,12 @@ test_that("all methods can be used and produce reasonable output", {
     expect_equal(dss$`quantiles & mean`["75%"], quantile(p, 0.75))
   })
 
-  expect_silent(datashield.assign(connections, "dat_no_na", quote(removeMissings("dat"))))
+  datashield.assign(connections, "dat_no_na", quote(removeMissings("dat")))
   nuisance = lapply(DSI::datashield.symbols(connections), function(s) {
      expect_true("dat_no_na" %in% s)
   })
 
-  expect_silent({ ri = datashield.aggregate(connections, quote(getDataSHIELDInfo())) })
+  ri = datashield.aggregate(connections, quote(getDataSHIELDInfo()))
   expect_equal(class(ri), "list")
   nuisance = lapply(ri, function(r) {
     expect_equal(names(r), c("session_info", "pcks"))
