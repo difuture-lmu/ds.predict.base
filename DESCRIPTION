@@ -7,7 +7,7 @@ Authors@R:
              role = c("aut", "cre"),
              email = "daniel.schalk@stat.uni-muenchen.de"))
 Version: 0.0.1
-License: LGPL (>= 3)
+License: LGPL-3
 Description: This package allows the user to push R objects to a DataSHIELD server. Additionally, if a specific
     model is present on the server, it is possible to calculate predictions on the server.
 Depends:
