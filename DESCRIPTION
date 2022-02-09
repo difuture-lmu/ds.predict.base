@@ -11,11 +11,11 @@ License: LGPL (>= 3)
 Description: This package allows the user to push R objects to a DataSHIELD server. Additionally, if a specific
     model is present on the server, it is possible to calculate predictions on the server.
 Depends:
-    R (>= 3.1.0),
+    R (>= 3.1.0)
+Imports:
     DSI,
     DSOpal,
-    dsBaseClient
-Imports:
+    dsBaseClient,
     checkmate,
     stringr
 Suggests:
