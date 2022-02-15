@@ -2,10 +2,10 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 [![Actions
-Status](https://github.com/difuture-lmu/ds.predict.base/workflows/R-CMD-check/badge.svg)](https://github.com/difuture-lmu/ds.predict.base/actions)
+Status](https://github.com/difuture-lmu/dsPredictBase/workflows/R-CMD-check/badge.svg)](https://github.com/difuture-lmu/dsPredictBase/actions)
 [![License: LGPL
 v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
-[![codecov](https://codecov.io/gh/difuture-lmu/ds.predict.base/branch/master/graph/badge.svg?token=OLIPLWDTN5)](https://codecov.io/gh/difuture-lmu/ds.predict.base)
+[![codecov](https://codecov.io/gh/difuture-lmu/dsPredictBase/branch/master/graph/badge.svg?token=OLIPLWDTN5)](https://codecov.io/gh/difuture-lmu/dsPredictBase)
 
 # Base Predict Functions for DataSHIELD
 
@@ -24,7 +24,7 @@ At the moment, there is no CRAN version available. Install the
 development version from GitHub:
 
 ``` r
-remotes::install_github("difuture-lmu/ds.predict.base")
+remotes::install_github("difuture-lmu/dsPredictBase")
 ```
 
 #### Register methods
@@ -32,7 +32,7 @@ remotes::install_github("difuture-lmu/ds.predict.base")
 It is necessary to register the assign and aggregate methods in the OPAL
 administration. These methods are registered automatically when
 publishing the package on OPAL (see
-[`DESCRIPTION`](https://github.com/difuture/ds.predict.base/blob/master/DESCRIPTION)).
+[`DESCRIPTION`](https://github.com/difuture/dsPredictBase/blob/master/DESCRIPTION)).
 
 Note that the package needs to be installed at both locations, the
 server and the analysts machine.
@@ -48,7 +48,7 @@ library(DSOpal)
 #> Loading required package: httr
 library(dsBaseClient)
 
-library(ds.predict.base)
+library(dsPredictBase)
 ```
 
 #### Log into DataSHIELD server
@@ -135,13 +135,13 @@ summary(mod)
 #> Number of Fisher Scoring iterations: 14
 ```
 
-#### ds.predict.base functionality
+#### dsPredictBase functionality
 
 Upload model to DataSHIELD server:
 
 ``` r
 pushObject(connections, mod)
-#> [2022-02-09 22:01:34] Your object is bigger than 1 MB (3.7 MB). Uploading larger objects may take some time.
+#> [2022-02-15 10:57:55] Your object is bigger than 1 MB (3.7 MB). Uploading larger objects may take some time.
 
 # Check if model "mod" is now available:
 DSI::datashield.symbols(connections)
@@ -239,7 +239,7 @@ datashield.logout(connections)
 
 ## Deploy information:
 
-**Build on 2022-02-09 22:02:35.**
+**Build on 2022-02-15 10:58:42.**
 
 This readme is built automatically after each push to the repository.
 Hence, it also is a test if the functionality of the package works also
@@ -251,20 +251,20 @@ local and remote servers are as followed:
       - `R` version: R version 4.1.2 (2021-11-01)
       - Version of DataSHELD client packages:
 
-| Package         | Version |
-| :-------------- | :------ |
-| DSI             | 1.3.0   |
-| DSOpal          | 1.3.1   |
-| dsBaseClient    | 6.1.1   |
-| ds.predict.base | 0.0.1   |
+| Package       | Version |
+| :------------ | :------ |
+| DSI           | 1.3.0   |
+| DSOpal        | 1.3.1   |
+| dsBaseClient  | 6.1.1   |
+| dsPredictBase | 0.0.1   |
 
   - Remote DataSHIELD machines:
       - `R` version of ds1: R version 4.1.1 (2021-08-10)
       - `R` version of ds2: R version 4.1.1 (2021-08-10)
       - Version of server packages:
 
-| Package         | ds1: Version | ds2: Version |
-| :-------------- | :----------- | :----------- |
-| dsBase          | 6.1.1        | 6.1.1        |
-| resourcer       | 1.1.1        | 1.1.1        |
-| ds.predict.base | 0.0.1        | 0.0.1        |
+| Package       | ds1: Version | ds2: Version |
+| :------------ | :----------- | :----------- |
+| dsBase        | 6.1.1        | 6.1.1        |
+| resourcer     | 1.1.1        | 1.1.1        |
+| dsPredictBase | 0.0.1        | 0.0.1        |
