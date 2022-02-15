@@ -1,4 +1,4 @@
-Package: ds.predict.base
+Package: dsPredictBase
 Type: Package
 Title: Push and predict objects on DataSHIELD
 Authors@R:

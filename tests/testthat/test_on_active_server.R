@@ -10,7 +10,7 @@ test_that("all methods can be used and produce reasonable output", {
 
   opal = opalr::opal.login(username = username, password = password, url = surl)
 
-  pkgs = c("ds.predict.base")
+  pkgs = c("dsPredictBase")
   for (pkg in pkgs) {
     check1 = opalr::dsadmin.install_github_package(opal = opal, pkg = pkg, username = "difuture-lmu", ref = "main")
     if (! check1)

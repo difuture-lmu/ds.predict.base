@@ -1,4 +1,4 @@
 library(testthat)
-library(ds.predict.base)
+library(dsPredictBase)
 
-test_check("ds.predict.base")
+test_check("dsPredictBase")
