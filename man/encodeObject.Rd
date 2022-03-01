@@ -4,15 +4,13 @@
 \alias{encodeObject}
 \title{Serialize R object}
 \usage{
-encodeObject(obj, obj_name = NULL, sep = "-", check_serialization = TRUE)
+encodeObject(obj, obj_name = NULL, check_serialization = TRUE)
 }
 \arguments{
 \item{obj}{(arbitrary R object) Object which should be send to DataSHIELD.}
 
 \item{obj_name}{(\code{character(1L)}) Name of the object (default is \code{NULL}). If name is set to
 \code{NULL}, then the object name passed to the function is used.}
-
-\item{sep}{(\code{character(1L)}) Separator used to collapse the binary elements (default is \code{-}).}
 
 \item{check_serialization}{(\code{logical(1L)}) Check if the serialized model can be deserialized
 locally (default is \code{TRUE}).}

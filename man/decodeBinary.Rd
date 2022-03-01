@@ -4,12 +4,10 @@
 \alias{decodeBinary}
 \title{Deserialize object}
 \usage{
-decodeBinary(bin, sep = "-", package = NULL)
+decodeBinary(bin, package = NULL)
 }
 \arguments{
 \item{bin}{(\code{character(1L)}) Binary string value containing the serialized model.}
-
-\item{sep}{(\code{character(1L)}) Separator used to collapse the binary elements (default is \code{-}).}
 
 \item{package}{(\code{character(1L)}) Package required for object deserialization (default is \code{NULL}).}
 }
