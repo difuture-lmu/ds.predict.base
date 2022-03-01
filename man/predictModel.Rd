@@ -11,7 +11,6 @@ predictModel(
   dat_name = "D",
   predict_fun = "predict(mod, newdata = D)",
   repush = FALSE,
-  sep = "-",
   check_serialization = TRUE,
   package = NULL,
   just_return_call = FALSE
@@ -33,8 +32,6 @@ gives the possibility to call arbitrary predict function like
 
 \item{repush}{(\code{logical(1L)}) Logical value indicating if the model should again pushed to the server
 (default is \code{TRUE}).}
-
-\item{sep}{(\code{character(1L)}) Separator used to collapse the binary elements (default is \code{-}).}
 
 \item{check_serialization}{(\code{logical(1L)}) Check if the serialized model can be deserialized locally
 (default is \code{TRUE}).}

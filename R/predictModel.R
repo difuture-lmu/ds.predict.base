@@ -14,7 +14,6 @@
 #'   default is `predict(mod, newdata = D)`.
 #' @param repush (`logical(1L)`) Logical value indicating if the model should again pushed to the server
 #'   (default is `TRUE`).
-#' @param sep (`character(1L)`) Separator used to collapse the binary elements (default is `-`).
 #' @param check_serialization (`logical(1L)`) Check if the serialized model can be deserialized locally
 #'   (default is `TRUE`).
 #' @param package (`character(1L)`) Package required for model predictions (default is `NULL`).
@@ -24,7 +23,7 @@
 #' @author Daniel S.
 #' @export
 predictModel = function(connections, mod, pred_name, dat_name = "D", predict_fun = "predict(mod, newdata = D)",
-  repush = FALSE, sep = "-", check_serialization = TRUE, package = NULL, just_return_call = FALSE) {
+  repush = FALSE, check_serialization = TRUE, package = NULL, just_return_call = FALSE) {
 
   checkmate::assertLogical(repush, len = 1L, null.ok = FALSE, any.missing = FALSE)
   checkmate::assertCharacter(pred_name, len = 1L, null.ok = FALSE, any.missing = FALSE)
@@ -45,7 +44,7 @@ predictModel = function(connections, mod, pred_name, dat_name = "D", predict_fun
     }
   }
 
-  if (repush) pushObject(connections, mod, mod_name, sep, check_serialization, package)
+  if (repush) pushObject(connections, mod, mod_name, check_serialization, package)
 
   call = stringr::str_replace(predict_fun, "mod", mod_name)
   call = stringr::str_replace(call, "D", dat_name)

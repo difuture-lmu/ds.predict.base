@@ -4,7 +4,6 @@
 #'   variable to it.
 #' @param connections (`DSI::connection`) Connection to an OPAL server.
 #' @param obj (arbitrary R object) Object containing which should be pushed to the server.
-#' @param sep (`character(1L)`) Separator used to collapse the binary elements (default is `-`).
 #' @param check_serialization (`logical(1L)`) Check if the serialized model can be deserialized
 #'   locally (default is `TRUE`).
 #' @param package (`character(1L)`) Package required for model predictions (default is `NULL`).
@@ -16,16 +15,16 @@
 #' cl = pushObject("Dummy", iris, just_return_call = TRUE)
 #' all.equal(iris, eval(parse(text = cl)))
 #' @export
-pushObject = function(connections, obj, sep = "-", check_serialization = TRUE, package = NULL,
+pushObject = function(connections, obj, check_serialization = TRUE, package = NULL,
   just_return_call = FALSE) {
 
   obj_name = deparse(substitute(obj))
 
   # Checks are done in encodeObject:
-  bin = encodeObject(obj, obj_name, sep, check_serialization)
+  bin = encodeObject(obj, obj_name, check_serialization)
   if (is.null(package)) package = "NULL" else packge = paste0("\"", package, "\"")
 
-  call = paste0("decodeBinary(\"", bin, "\", \"", sep = attr(bin, "sep"), "\", ", package, ")")
+  call = paste0("decodeBinary(\"", bin, "\", ", package, ")")
   cq = NULL # Dummy for checks
   eval(parse(text = paste0("cq = quote(", call, ")")))
 

@@ -7,7 +7,6 @@
 pushObject(
   connections,
   obj,
-  sep = "-",
   check_serialization = TRUE,
   package = NULL,
   just_return_call = FALSE
@@ -17,8 +16,6 @@ pushObject(
 \item{connections}{(\code{DSI::connection}) Connection to an OPAL server.}
 
 \item{obj}{(arbitrary R object) Object containing which should be pushed to the server.}
-
-\item{sep}{(\code{character(1L)}) Separator used to collapse the binary elements (default is \code{-}).}
 
 \item{check_serialization}{(\code{logical(1L)}) Check if the serialized model can be deserialized
 locally (default is \code{TRUE}).}

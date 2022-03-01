@@ -16,7 +16,7 @@
 #' @export
 encodeObject = function(obj, obj_name = NULL, check_serialization = TRUE) {
   checkmate::assertCharacter(obj_name, len = 1L, null.ok = TRUE, any.missing = FALSE)
-   chekmate::assertLogical(check_serialization, len = 1L)
+  checkmate::assertLogical(check_serialization, len = 1L)
 
   if (is.null(obj_name)) obj_name = deparse(substitute(obj))
 
