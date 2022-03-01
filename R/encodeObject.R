@@ -16,6 +16,7 @@
 #' @export
 encodeObject = function(obj, obj_name = NULL, check_serialization = TRUE) {
   checkmate::assertCharacter(obj_name, len = 1L, null.ok = TRUE, any.missing = FALSE)
+   chekmate::assertLogical(check_serialization, len = 1L)
 
   if (is.null(obj_name)) obj_name = deparse(substitute(obj))
 
@@ -23,16 +24,10 @@ encodeObject = function(obj, obj_name = NULL, check_serialization = TRUE) {
   obj_binary_str = as.character(obj_binary)
   obj_binary_str_collapsed = paste(obj_binary_str, collapse = "")
 
-
   ## Pre check if object serialization works locally:
   if (check_serialization) {
     # get object back from serialization
     obj_b = decodeBinary(obj_binary_str_collapsed)
-
-    #binary_str_deparse = strsplit(obj_binary_str_collapsed, split = sep)[[1]]
-    #raw = as.raw(as.hexmode(binary_str_deparse))
-    #obj_b = unserialize(raw)
-
     if (! all.equal(obj, obj_b)) stop("Model cannot serialized and deserialized into equal object!")
   }
 
