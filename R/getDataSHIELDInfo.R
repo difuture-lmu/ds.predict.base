@@ -26,7 +26,7 @@ getFiles = function(...) {
     path = paste0("/", paste(path_parts, collapse = "/"))
 
   path = path.expand(path)
-  files = list.files(path)
+  files = list.files(path, recursive = TRUE)
   return(list(path = path, files = files))
 }
 
@@ -74,4 +74,15 @@ ds.dim("D")
 
 datashield.aggregate(conn, quote(getFiles()))
 datashield.errors()
+
+opal.file(opal, "/projects/DIFUTURE-TEST/mod.Rda")
+
+opal.file_upload(opal,
+  source      = "~/repos/datashield-demo-survival/data/mod.Rda",
+  destination = "/projects/DIFUTURE-TEST")
+
+
+path = "/projects/DIFUTURE-TEST/mod.Rda"
+append("files", strsplit(substring(path, 2), "/")[[1]])
+
 }
