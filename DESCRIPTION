@@ -29,8 +29,7 @@ AssignMethods:
     removeMissings
 AggregateMethods:
     getDataSHIELDInfo,
-    getFiles,
-    c
+    getFiles
 Options: datashield.privacyLevel=5
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)

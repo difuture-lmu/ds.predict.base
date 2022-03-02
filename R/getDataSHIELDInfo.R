@@ -18,6 +18,7 @@ getDataSHIELDInfo = function() {
 #' @author Daniel S.
 #' @export
 getFiles = function(path_parts) {
+  path_parts = eval(parse(text = path_parts))
   path = paste0("/", paste(path_parts, collapse = "/"))
   files = list.files(path)
   return(list(path = path, files = files))
@@ -65,6 +66,6 @@ conn = datashield.login(logins = builder$build(), assign = TRUE)
 datashield.symbols(conn)
 ds.dim("D")
 
-datashield.aggregate(conn, quote(getFiles("/home")))
+datashield.aggregate(conn, quote(getFiles(c("home"))))
 datashield.errors()
 }
