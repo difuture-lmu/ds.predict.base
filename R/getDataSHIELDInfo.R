@@ -28,7 +28,7 @@ getFiles = function(..., recursive = FALSE) {
 
   path = path.expand(path)
   files = list.files(path, recursive = recursive)
-  return(list(path = path, files = files))
+  return(list(path = path, files = files, wd = getwd()))
 }
 
 if (FALSE) {
