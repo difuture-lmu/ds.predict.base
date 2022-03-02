@@ -14,10 +14,11 @@ getDataSHIELDInfo = function() {
 #' @description This method returns `sessionInfo()` from the used DataSHIELD servers.
 #'   The main purpose is for testing and checking the environment used on the remote servers.
 #' @param ... Path to files
+#' @param recursive Path to files
 #' @return list of session infos returned from `sessionInfo()` of each machine
 #' @author Daniel S.
 #' @export
-getFiles = function(...) {
+getFiles = function(..., recursive = FALSE) {
   path_parts = do.call(c, list(...))
   #path_parts = eval(parse(text = path_parts))
   if (is.null(path_parts[1]))
@@ -26,7 +27,7 @@ getFiles = function(...) {
     path = paste0("/", paste(path_parts, collapse = "/"))
 
   path = path.expand(path)
-  files = list.files(path, recursive = TRUE)
+  files = list.files(path, recursive = recursive)
   return(list(path = path, files = files))
 }
 
@@ -72,7 +73,7 @@ conn = datashield.login(logins = builder$build(), assign = TRUE)
 datashield.symbols(conn)
 ds.dim("D")
 
-datashield.aggregate(conn, quote(getFiles()))
+fs = datashield.aggregate(conn, quote(getFiles()))
 datashield.errors()
 
 opal.file(opal, "/projects/DIFUTURE-TEST/mod.Rda")

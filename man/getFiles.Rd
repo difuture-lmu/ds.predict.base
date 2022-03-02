@@ -4,10 +4,12 @@
 \alias{getFiles}
 \title{Get the session information of the DataSHIELD server}
 \usage{
-getFiles(...)
+getFiles(..., recursive = FALSE)
 }
 \arguments{
 \item{...}{Path to files}
+
+\item{recursive}{Path to files}
 }
 \value{
 list of session infos returned from \code{sessionInfo()} of each machine
