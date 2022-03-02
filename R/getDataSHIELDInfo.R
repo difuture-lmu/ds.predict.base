@@ -17,6 +17,54 @@ getDataSHIELDInfo = function() {
 #' @return list of session infos returned from `sessionInfo()` of each machine
 #' @author Daniel S.
 #' @export
-getFiles = function(path) {
-  return(list.files(path))
+getFiles = function(path_parts) {
+  path = paste0("/", paste(path_parts, collapse = "/"))
+  files = list.files(path)
+  return(list(path = path, files = files))
+}
+
+if (FALSE) {
+surl     = "https://opal-demo.obiba.org/"
+username = "administrator"
+password = "password"
+opal = opalr::opal.login(username = username, password = password, url = surl)
+
+pkg = "dsPredictBase"
+opalr::dsadmin.install_github_package(opal = opal, pkg = pkg, username = "difuture-lmu", ref = "main")
+opalr::dsadmin.publish_package(opal = opal, pkg = pkg)
+
+library(DSI)
+library(DSOpal)
+library(dsBaseClient)
+
+library(dsPredictBase)
+library(dsCalibration)
+library(dsROCGLM)
+
+library(ggplot2)
+
+builder = newDSLoginBuilder()
+
+surl     = "https://opal-demo.obiba.org/"
+username = "administrator"
+password = "password"
+
+datasets = paste0("SRV", seq_len(5L))
+for (i in seq_along(datasets)) {
+  builder$append(
+    server   = paste0("ds", i),
+    url      = surl,
+    user     = username,
+    password = password,
+    table    = paste0("DIFUTURE-TEST.", datasets[i])
+  )
+}
+
+## Get data of the servers:
+conn = datashield.login(logins = builder$build(), assign = TRUE)
+datashield.symbols(conn)
+ds.dim("D")
+
+datashield.aggregate(conn, quote(getFiles("/home")))
+datashield.errors()
 }
