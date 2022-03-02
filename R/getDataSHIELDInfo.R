@@ -13,12 +13,13 @@ getDataSHIELDInfo = function() {
 #' @title Get the session information of the DataSHIELD server
 #' @description This method returns `sessionInfo()` from the used DataSHIELD servers.
 #'   The main purpose is for testing and checking the environment used on the remote servers.
-#' @param path Path to files
+#' @param ... Path to files
 #' @return list of session infos returned from `sessionInfo()` of each machine
 #' @author Daniel S.
 #' @export
-getFiles = function(path_parts) {
-  path_parts = eval(parse(text = path_parts))
+getFiles = function(...) {
+  path_parts = do.call(c, list(...))
+  #path_parts = eval(parse(text = path_parts))
   path = paste0("/", paste(path_parts, collapse = "/"))
   files = list.files(path)
   return(list(path = path, files = files))
@@ -66,6 +67,6 @@ conn = datashield.login(logins = builder$build(), assign = TRUE)
 datashield.symbols(conn)
 ds.dim("D")
 
-datashield.aggregate(conn, quote(getFiles(c("home"))))
+datashield.aggregate(conn, quote(getFiles("c('home')")))
 datashield.errors()
 }

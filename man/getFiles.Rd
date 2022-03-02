@@ -4,10 +4,10 @@
 \alias{getFiles}
 \title{Get the session information of the DataSHIELD server}
 \usage{
-getFiles(path)
+getFiles(...)
 }
 \arguments{
-\item{path}{Path to files}
+\item{...}{Path to files}
 }
 \value{
 list of session infos returned from \code{sessionInfo()} of each machine
