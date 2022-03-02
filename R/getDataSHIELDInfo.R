@@ -25,6 +25,7 @@ getFiles = function(...) {
   else
     path = paste0("/", paste(path_parts, collapse = "/"))
 
+  path = path.expand(path)
   files = list.files(path)
   return(list(path = path, files = files))
 }
