@@ -32,7 +32,7 @@ remotes::install_github("difuture-lmu/dsPredictBase")
 It is necessary to register the assign and aggregate methods in the OPAL
 administration. These methods are registered automatically when
 publishing the package on OPAL (see
-[`DESCRIPTION`](https://github.com/difuture/dsPredictBase/blob/master/DESCRIPTION)).
+[`DESCRIPTION`](https://github.com/difuture/dsPredictBase/blob/main/DESCRIPTION)).
 
 Note that the package needs to be installed at both locations, the
 server and the analysts machine.
@@ -141,7 +141,7 @@ Upload model to DataSHIELD server:
 
 ``` r
 pushObject(connections, mod)
-#> [2022-03-21 14:32:28] Your object is bigger than 1 MB (2.4 MB). Uploading larger objects may take some time.
+#> [2022-03-21 14:36:45] Your object is bigger than 1 MB (2.4 MB). Uploading larger objects may take some time.
 
 # Check if model "mod" is now available:
 DSI::datashield.symbols(connections)
@@ -239,7 +239,7 @@ datashield.logout(connections)
 
 ## Deploy information:
 
-**Build on 2022-03-21 14:33:08.**
+**Build on 2022-03-21 14:37:22.**
 
 This readme is built automatically after each push to the repository.
 Hence, it also is a test if the functionality of the package works also
