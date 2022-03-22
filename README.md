@@ -5,7 +5,7 @@
 Status](https://github.com/difuture-lmu/dsPredictBase/workflows/R-CMD-check/badge.svg)](https://github.com/difuture-lmu/dsPredictBase/actions)
 [![License: LGPL
 v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
-[![codecov](https://codecov.io/gh/difuture-lmu/dsPredictBase/branch/master/graph/badge.svg?token=OLIPLWDTN5)](https://codecov.io/gh/difuture-lmu/dsPredictBase)
+[![codecov](https://codecov.io/gh/difuture-lmu/dsPredictBase/branch/main/graph/badge.svg?token=OLIPLWDTN5)](https://codecov.io/gh/difuture-lmu/dsPredictBase)
 
 # Base Predict Functions for DataSHIELD
 
