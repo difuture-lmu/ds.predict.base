@@ -141,7 +141,7 @@ Upload model to DataSHIELD server:
 
 ``` r
 pushObject(connections, mod)
-#> [2022-03-21 15:27:37] Your object is bigger than 1 MB (2.4 MB). Uploading larger objects may take some time.
+#> [2022-03-22 13:26:36] Your object is bigger than 1 MB (2.4 MB). Uploading larger objects may take some time.
 
 # Check if model "mod" is now available:
 DSI::datashield.symbols(connections)
@@ -239,7 +239,7 @@ datashield.logout(connections)
 
 ## Deploy information:
 
-**Build by root (machine x86\_64) on 2022-03-21 15:28:18.**
+**Build by root (machine 20.6.0) on 2022-03-22 13:27:24.**
 
 This readme is built automatically after each push to the repository.
 Hence, it also is a test if the functionality of the package works also
