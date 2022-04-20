@@ -63,6 +63,7 @@ for (pkg in pkgs) {
 
 The package provides base functionality to push `R` objects to servers using the DataSHIELD](https://www.datashield.org/) infrastructure for distributed computing. Additionally, it is possible to calculate predictions on the server for a specific model. Combining these allows to push a model from the local machine to all servers running DataSHIELD and predicting on that model with data exclusively hold by the server. The predictions are stored at the server and can be further analysed using the DataSHIELD functionality for non-disclosive analyses.
 
+
 ## Installation
 
 At the moment, there is no CRAN version available. Install the development version from GitHub:
