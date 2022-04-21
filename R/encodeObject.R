@@ -1,4 +1,3 @@
-#'
 #' @title Serialize R object
 #' @description This function serializes a given R object and creates a character string
 #'   containing the binary of the object. This object can be send to the DataSHIELD servers.
